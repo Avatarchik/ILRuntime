@@ -142,5 +142,74 @@ namespace TestCases
             }
         }
 
+        public static void JsonTestFloat()
+        {
+            var floats = new List<float>()
+            {
+                float.MinValue,
+                -123213.2f,
+                -123.23478f,
+                -1.0f,
+                0,
+                1.0f,
+                123.23478f,
+                float.MaxValue,
+            };
+
+            var json = JsonMapper.ToJson(floats);
+
+            Console.WriteLine(json);
+
+            var floats2 = JsonMapper.ToObject<List<float>>(json);
+
+            for (var index = 0; index < floats.Count; index++)
+            {
+                var f = floats[index];
+                var f2 = floats2[index];
+
+                Console.WriteLine(string.Format("{0:f5} - {1:f5}", f, f2));
+
+                if (Math.Abs(f - f2) > 0.01f)
+                {
+                    throw new Exception();
+                }
+            }
+        }
+
+        public static void JsonTestDouble()
+        {
+            var floats = new List<double>()
+            {
+                float.MinValue,
+                -123213.23478f,
+                -123.23478f,
+                -1.0f,
+                0,
+                1.0f,
+                123.23478f,
+                float.MaxValue,
+            };
+
+            var json = JsonMapper.ToJson(floats);
+
+            Console.WriteLine(json);
+
+            var floats2 = JsonMapper.ToObject<List<double>>(json);
+
+            for (var index = 0; index < floats.Count; index++)
+            {
+                var f = floats[index];
+                var f2 = floats2[index];
+
+                Console.WriteLine(string.Format("{0:f5} - {1:f5}", f, f2));
+
+                if (Math.Abs(f - f2) > 0.01f)
+                {
+                    throw new Exception();
+                }
+            }
+        }
+
+
     }
 }
